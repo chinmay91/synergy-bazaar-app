@@ -9,7 +9,7 @@ var storeApp = angular.module('synergyBazaar', ['ngRoute'])
 	
 							$routeProvider
 							// Home
-						    .when("/", {templateUrl: "../synergy-bazaar-app/views/landing.html", controller: "LandingCtrl"})
+						    .when("/", {templateUrl: "views/landing.html", controller: "LandingCtrl"})
 						    // Pages
 						    /*.when("/about", {templateUrl: "partials/about.html", controller: "PageCtrl"})
 						    .when("/faq", {templateUrl: "partials/faq.html", controller: "PageCtrl"})
