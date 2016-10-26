@@ -13,10 +13,8 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.synergy.bazaar.mongo.entity.MobileCamera;
 import com.synergy.bazaar.mongo.entity.MobileDisplay;
 import com.synergy.bazaar.mongo.entity.MobileGeneral;
-import com.synergy.bazaar.mongo.entity.MobileSoftware;
 import com.synergy.bazaar.mongo.service.IMobileSpecificationService;
 import com.synergy.bazaar.rest.app.constant.ApplicationConstant;
 import com.synergy.bazaar.rest.common.vo.MessageResponse;
@@ -30,7 +28,8 @@ public class MobileSpecificationRestAPI {
 		@Autowired
 		private IMobileSpecificationService iMobileSpecificationService;
 		
-		@Path("/mobile-specfication")
+		
+		@Path("/mobile-specification")
 		@GET
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.APPLICATION_JSON)
@@ -61,44 +60,25 @@ public class MobileSpecificationRestAPI {
 		      display.setDom(new Timestamp(new Date().getTime()));
 		      display.setUserid("8237ghsw");
 		      
-		      MobileSoftware mobileSoftware=new MobileSoftware();
-		      mobileSoftware.setOsVersion("Android with HTC Sense");
-		      mobileSoftware.setPreInstalledApps("Whatsapp, Facebook");
-		      mobileSoftware.setMuliLanguagesSupported("English,Spanish");
-		      mobileSoftware.setDoe(new Timestamp(new Date().getTime()));
-		      mobileSoftware.setDom(new Timestamp(new Date().getTime()));
-		      mobileSoftware.setUserid("82375682ghsw");
-		      
-		      MobileCamera mobileCamera=new MobileCamera();
-		      mobileCamera.setRearCamera("13 MP");
-		      mobileCamera.setFrontCamera("8 MP");
-		      mobileCamera.setFlash(true);
-		      mobileCamera.setOtherCameraFeatures("BSI Sensor");
-		      mobileCamera.setDoe(new Timestamp(new Date().getTime()));
-		      mobileCamera.setDom(new Timestamp(new Date().getTime()));
-		      mobileCamera.setUserid("82375682ghsw");
-		    
-		      
 		      mobileSpecificationVO.setDisplay(display);
 		      mobileSpecificationVO.setGeneral(general);
-		      mobileSpecificationVO.setMobileSoftware(mobileSoftware);
-		      mobileSpecificationVO.setMobileCamera(mobileCamera);
 		      
 		      String status=iMobileSpecificationService.addMobileSpecification(mobileSpecificationVO);
 
 		      MessageResponse messageResponse=new MessageResponse();
-		  	  messageResponse.setStatus(status);
-		  	  messageResponse.setResponseCode("200");
-		  	  messageResponse.setMessage("Hey! data is saved into database!!!!!!!!!!!!!!!!");
-		  	  return messageResponse;
-			}
+		  	 messageResponse.setStatus(status);
+			 messageResponse.setResponseCode("200");
+			 messageResponse.setMessage("Hey! data is saved into database!!!!!!!!!!!!!!!!");
+			 return messageResponse;
+		}
 		
-			@Path("/mobile-specfications")
-			@GET
-			@Consumes(MediaType.APPLICATION_JSON)
-			@Produces(MediaType.APPLICATION_JSON)
-			public  List<MobileSpecificationVO> mobileSpecfications(){
+		@Path("/mobile-specifications")
+		@GET
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.APPLICATION_JSON)
+		public  List<MobileSpecificationVO> mobileSpecfications(){
 			 List<MobileSpecificationVO> mobileSpecificationVOs=iMobileSpecificationService.listMobileSpecifications();
 			 return mobileSpecificationVOs;
 		}
+
 }
